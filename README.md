@@ -18,8 +18,8 @@ By default [Jil's Default.Options](https://github.com/kevin-montrose/Jil#configu
 ```
     // change only the JilSerializer's Options
     Nancy.Serialization.Jil.JilSerializer.Options = Options.ISO8601PrettyPrintNoHashing;
-    // change only the JilBodyDeserializer's Options
     
+    // change only the JilBodyDeserializer's Options
     Nancy.Serialization.Jil.JilBodyDeserializer.Options = Options.ISO8601PrettyPrintNoHashingIncludeInherited;
     
     // or for both:
