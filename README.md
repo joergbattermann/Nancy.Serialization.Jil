@@ -30,12 +30,13 @@ By default [Jil's Default.Options](https://github.com/kevin-montrose/Jil#configu
 
 As this library is based on [Jil](https://github.com/kevin-montrose/Jil), all its Features but also Limitations also apply here: .Net >= 4.5 is required, but even more so please take a close look at its [List of supported types](https://github.com/kevin-montrose/Jil/blob/master/README.md#supported-types) and how to [configure and tailor Jil](https://github.com/kevin-montrose/Jil/blob/master/README.md#configuration) to your specific environment and use case.
 
+##Build Status: [![Build status](https://ci.appveyor.com/api/projects/status/8m1agvwx1qukrrc1)](https://ci.appveyor.com/project/jbattermann/nancy-serialization-jil)
+
 ## Thanks
 
 This is basically a 1:1: port of [Nancy.Serialization.JsonNet](https://github.com/NancyFx/Nancy.Serialization.JsonNet) but replacing the [Json.NET](http://json.codeplex.com/) parts with Jil. So thanks to Andreas Håkansson, Steven Robbins and the other original contributors.
 
 Moreover thanks alot to [Kevin](https://github.com/kevin-montrose) for his awesome work on [Jil](https://github.com/kevin-montrose/Jil).
-
 
 ## Copyright
 
