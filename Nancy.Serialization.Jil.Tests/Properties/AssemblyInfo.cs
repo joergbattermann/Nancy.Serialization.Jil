@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyProduct("Nancy.Serialization.Jil.Tests")]
 [assembly: AssemblyCopyright("Copyright © Joerg Battermann 2014")]
 [assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("en-us")]
+[assembly: AssemblyCulture("")]
 
 [assembly: ComVisible(false)]
 
