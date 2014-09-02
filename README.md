@@ -16,10 +16,14 @@ Start of by installing the `Nancy.Serialization.Jil` nuget package. When Nancy d
 By default [Jil's Default.Options](https://github.com/kevin-montrose/Jil#configuration) are used for both, Serialization and De-Serialization. If you want to change that behaviour, choose one of the many [Configuration Options](https://github.com/kevin-montrose/Jil/blob/master/README.md#configuration) available and change the Default one used like that:
 
 ```
-    Nancy.Serialization.Jil.JilSerializer.Options = Options.ISO8601PrettyPrintNoHashing; // changes only the JilSerializer's Options
-    Nancy.Serialization.Jil.JilBodyDeserializer.Options = Options.ISO8601PrettyPrintNoHashingIncludeInherited; // changes only the JilBodyDeserializer's Options
-    // or
-    Nancy.Serialization.Jil.JilSerializer.Options = Nancy.Serialization.Jil.JilBodyDeserializer.Options = Options.ISO8601PrettyPrintNoHashing; // changes both Options (that's usually what you'd like I guess)
+    // change only the JilSerializer's Options
+    Nancy.Serialization.Jil.JilSerializer.Options = Options.ISO8601PrettyPrintNoHashing;
+    // change only the JilBodyDeserializer's Options
+    
+    Nancy.Serialization.Jil.JilBodyDeserializer.Options = Options.ISO8601PrettyPrintNoHashingIncludeInherited;
+    
+    // or for both:
+    Nancy.Serialization.Jil.JilSerializer.Options = Nancy.Serialization.Jil.JilBodyDeserializer.Options = Options.ISO8601PrettyPrintNoHashing; // that's usually what you'd like I guess
 ```
 
 ## Limitations
