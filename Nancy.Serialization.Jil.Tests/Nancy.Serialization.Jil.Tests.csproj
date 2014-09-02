@@ -67,6 +67,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="JsonNetBodyDeserializerFixture.cs" />
+    <Compile Include="JilSerializerFixture.cs" />
+    <Compile Include="ModelBindingFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
