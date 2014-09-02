@@ -9,7 +9,11 @@ This does not work round-trip wise, yet. Currently only the ISerialization imple
 
 ## Usage
 
-Start of by installing the `Nancy.Serialization.Jil` nuget package. When Nancy detects that the `JilSerializer` and `JilBodyDeserializer` types are available in the AppDomain of your application, it will assume you want to use them, rather than the default ones.
+Start of by installing the [Nancy.Serialization.Jil](https://www.nuget.org/packages/Nancy.Serialization.Jil/) NuGet package:
+
+`PM> Install-Package Nancy.Serialization.Jil`
+
+When Nancy detects that the `JilSerializer` and `JilBodyDeserializer` types are available in the AppDomain of your application, it will assume you want to use them, rather than the default ones.
 
 ### Customization & Jil Options
 
