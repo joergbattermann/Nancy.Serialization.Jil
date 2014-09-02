@@ -5,7 +5,7 @@
     <version>0.0.1</version> <!-- Overridden by Appveyor Build Task -->
     <authors>Joerg Battermann</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Provides JSON (De-)Serialization support using Jil.</description>
+    <description>Provides JSON (De-)Serialization support for Nancy using Jil.</description>
     <summary>*IMPORTANT: This is not finished, yet!* This is a Jil based Json (De-)Serializer for Nancy. Nancy is a lightweight web framework for the .Net platform, inspired by Sinatra.</summary>
     <language>en-US</language>
     <copyright>Joerg Battermann</copyright>
