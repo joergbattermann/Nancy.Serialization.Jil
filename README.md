@@ -25,4 +25,4 @@ Copyright © 2014 Jörg Battermann
 
 ## License
 
-Nancy.Serialization.Jil is licensed under [MIT](http://www.opensource.org/licenses/mit-license.php "Read more about the MIT license form"). Refer to license.txt for more information.
+Nancy.Serialization.Jil is licensed under [MIT](http://www.opensource.org/licenses/mit-license.php "Read more about the MIT license form"). Refer to [LICENSE.md](https://github.com/jbattermann/Nancy.Serialization.Jil/blob/master/LICENSE.md) for more information.
