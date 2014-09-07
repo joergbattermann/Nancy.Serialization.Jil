@@ -1,5 +1,5 @@
-Nancy.Serialization.Jil
-=======================
+# Nancy.Serialization.Jil [![NuGet Version](http://img.shields.io/nuget/v/Nancy.Serialization.Jil.svg?style=flat)](https://www.nuget.org/packages/Nancy.Serialization.Jil/) [![Build status](https://ci.appveyor.com/api/projects/status/8m1agvwx1qukrrc1)](https://ci.appveyor.com/project/jbattermann/nancy-serialization-jil)
+
 
 Implementations of the ISerialization and IBodyDeserializer interfaces, based on [Jil](https://github.com/kevin-montrose/Jil), for [Nancy](http://nancyfx.org). Because a little bit more [Performance](https://github.com/kevin-montrose/Jil/blob/master/README.md#benchmarks) never hurts.
 
@@ -33,8 +33,6 @@ By default [Jil's Default.Options](https://github.com/kevin-montrose/Jil#configu
 ## Limitations
 
 As this library is based on [Jil](https://github.com/kevin-montrose/Jil), all its Features but also Limitations also apply here: .Net >= 4.5 is required, but even more so please take a close look at its [List of supported types](https://github.com/kevin-montrose/Jil/blob/master/README.md#supported-types) and how to [configure and tailor Jil](https://github.com/kevin-montrose/Jil/blob/master/README.md#configuration) to your specific environment and use case.
-
-##Build Status: [![Build status](https://ci.appveyor.com/api/projects/status/8m1agvwx1qukrrc1)](https://ci.appveyor.com/project/jbattermann/nancy-serialization-jil)
 
 ## Thanks
 
