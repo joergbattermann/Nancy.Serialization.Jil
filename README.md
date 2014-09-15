@@ -3,10 +3,6 @@
 
 Implementations of the ISerialization and IBodyDeserializer interfaces, based on [Jil](https://github.com/kevin-montrose/Jil), for [Nancy](http://nancyfx.org). Because a little bit more [Performance](https://github.com/kevin-montrose/Jil/blob/master/README.md#benchmarks) never hurts.
 
-## IMPORTANT
-
-This does not work round-trip wise, yet. Currently only the ISerialization implementation works as I'm waiting for an [issue/feature for Jil to be added](https://github.com/kevin-montrose/Jil/issues/60) to one of the next releases. Once that is done, I'll publish a 1.0 release of this library.
-
 ## Usage
 
 Start of by installing the [Nancy.Serialization.Jil](https://www.nuget.org/packages/Nancy.Serialization.Jil/) NuGet package:
@@ -32,11 +28,14 @@ By default [Jil's Default.Options](https://github.com/kevin-montrose/Jil#configu
 
 ## Limitations
 
-As this library is based on [Jil](https://github.com/kevin-montrose/Jil), all its Features but also Limitations also apply here: .Net >= 4.5 is required, but even more so please take a close look at its [List of supported types](https://github.com/kevin-montrose/Jil/blob/master/README.md#supported-types) and how to [configure and tailor Jil](https://github.com/kevin-montrose/Jil/blob/master/README.md#configuration) to your specific environment and use case.
+As this library is based on [Jil](https://github.com/kevin-montrose/Jil), all its Features but also Limitations also apply here: .Net >= 4.5 is required, but even more so please take a close look at its [List of supported types](https://github.com/kevin-montrose/Jil/blob/master/README.md#supported-types) and how to [configure and tailor Jil](https://github.com/kevin-montrose/Jil/blob/master/README.md#configuration) to your specific environment and use case. However, one thing I've noticed is that Jil seems to require a public, empty .ctor for the types to be deserialized. Keep that in mind when designing your DTOs.
+
+### Changes between Nancy.Serialization.Jil and *.JsonNet
+As I haven't used [Nancy.Serialization.JsonNet](https://github.com/NancyFx/Nancy.Serialization.JsonNet) myself, I cannot say much about Nancy.Serialization.Jil's being a simple drop-in replacement, but Jil's Default set of options (see above) does come with a differen Json notation compared to Json.Net when it comes to Property-Names. When porting the tests over, I noticed the original json test fixtures ones had property names like .someProperty (even though the classes propery names were in fact .SomeProperty). Jil on the other hand keeps these properties at their original case, meaning a property named .SomeProperty remains SomeProperty inside the serialized Json.
 
 ## Thanks
 
-This is basically a 1:1: port of [Nancy.Serialization.JsonNet](https://github.com/NancyFx/Nancy.Serialization.JsonNet) but replacing the [Json.NET](http://json.codeplex.com/) parts with Jil. So thanks to Andreas Håkansson, Steven Robbins and the other original contributors.
+This is basically a port of [Nancy.Serialization.JsonNet](https://github.com/NancyFx/Nancy.Serialization.JsonNet) but replacing the [Json.NET](http://json.codeplex.com/) specific parts with Jil's ones and adjusting the test correspondingly. So thanks to Andreas Håkansson, Steven Robbins and the other original contributors.
 
 Moreover thanks alot to [Kevin](https://github.com/kevin-montrose) for his awesome work on [Jil](https://github.com/kevin-montrose/Jil).
 
