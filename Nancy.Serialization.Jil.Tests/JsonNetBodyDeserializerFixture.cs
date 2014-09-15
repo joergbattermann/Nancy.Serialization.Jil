@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -12,20 +14,26 @@ namespace Nancy.Serialization.Jil.Tests
     {
         public class TestData
         {
-            private TestData()
+            public TestData()
             {
             }
-
-            public TestData(string randomStuff)
-            {
-                // Should never get here as it should use the NonPublicDefaultConstructor first.
-                if (randomStuff == null)
-                    throw new ArgumentNullException("randomStuff");
-            }
-
+            
             public string SomeString { get; set; }
 
             public Guid SomeGuid { get; set; }
+        }
+
+        public class TestDataWithList
+        {
+            public TestDataWithList()
+            {
+            }
+            
+            public string SomeString { get; set; }
+
+            public Guid SomeGuid { get; set; }
+
+            public List<string> SomeList { get; set; }
         }
 
         [TestMethod]
@@ -33,7 +41,7 @@ namespace Nancy.Serialization.Jil.Tests
         {
             // Given
             var guid = Guid.NewGuid();
-            string source = string.Format("{{\"someString\":\"some string value\",\"someGuid\":\"{0}\"}}", guid);
+            string source = string.Format("{{\"SomeString\":\"some string value\",\"SomeGuid\":\"{0}\"}}", guid);
 
             var context = new BindingContext
             {
@@ -45,8 +53,8 @@ namespace Nancy.Serialization.Jil.Tests
             object actual;
             using (var bodyStream = new MemoryStream(Encoding.UTF8.GetBytes(source)))
             {
-                IBodyDeserializer sut = new JilBodyDeserializer();
-                actual = sut.Deserialize("application/json", bodyStream, context);
+                IBodyDeserializer jilBodyDeserializer = new JilBodyDeserializer();
+                actual = jilBodyDeserializer.Deserialize("application/json", bodyStream, context);
             }
 
             // Then
@@ -56,6 +64,72 @@ namespace Nancy.Serialization.Jil.Tests
             Assert.IsNotNull(actualData);
             Assert.AreEqual("some string value", actualData.SomeString);
             Assert.AreEqual(guid, actualData.SomeGuid);
+        }
+
+        [TestMethod]
+        public void when_deserializing_with_blacklisted_property()
+        {
+            // Given
+            var guid = Guid.NewGuid();
+            string source = string.Format("{{\"SomeString\":\"some string value\",\"SomeGuid\":\"{0}\"}}", guid);
+
+            var context = new BindingContext
+            {
+                DestinationType = typeof(TestData),
+                ValidModelProperties = typeof(TestData).GetProperties(BindingFlags.Public | BindingFlags.Instance).Where(propertyInfo => propertyInfo.Name != "SomeString"),
+            };
+
+            // When
+            object actual;
+            using (var bodyStream = new MemoryStream(Encoding.UTF8.GetBytes(source)))
+            {
+                IBodyDeserializer jilBodyDeserializer = new JilBodyDeserializer();
+                actual = jilBodyDeserializer.Deserialize("application/json", bodyStream, context);
+            }
+
+            // Then
+            Assert.IsInstanceOfType(actual, typeof(TestData));
+
+            var actualData = actual as TestData;
+            Assert.IsNotNull(actualData);
+            Assert.IsNull(actualData.SomeString);
+            Assert.AreEqual(guid, actualData.SomeGuid);
+        }
+
+        [TestMethod]
+        public void when_deserializing_with_list()
+        {
+            // Given
+            var guid = Guid.NewGuid();
+
+            // \"MyStringArray\":[\"somestring1\",\"somestring2\"]
+            string source = string.Format("{{\"SomeString\":\"some string value\",\"SomeGuid\":\"{0}\",\"SomeList\":[\"somestring1\",\"somestring2\"]}}", guid);
+
+            var context = new BindingContext
+            {
+                DestinationType = typeof(TestDataWithList),
+                ValidModelProperties = typeof(TestDataWithList).GetProperties(BindingFlags.Public | BindingFlags.Instance),
+            };
+
+            // When
+            object actual;
+            using (var bodyStream = new MemoryStream(Encoding.UTF8.GetBytes(source)))
+            {
+                IBodyDeserializer jilBodyDeserializer = new JilBodyDeserializer();
+                actual = jilBodyDeserializer.Deserialize("application/json", bodyStream, context);
+            }
+
+            // Then
+            Assert.IsInstanceOfType(actual, typeof(TestDataWithList));
+
+            var actualData = actual as TestDataWithList;
+            Assert.IsNotNull(actualData);
+            Assert.AreEqual("some string value", actualData.SomeString);
+            Assert.AreEqual(guid, actualData.SomeGuid);
+            Assert.IsNotNull(actualData.SomeList);
+            Assert.AreEqual(2, actualData.SomeList.Count);
+            Assert.AreEqual("somestring1", actualData.SomeList[0]);
+            Assert.AreEqual("somestring2", actualData.SomeList[1]);
         }
     }
 }
