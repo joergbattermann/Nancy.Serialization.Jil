@@ -17,7 +17,8 @@ namespace Nancy.Serialization.Jil
     /// </summary>
     public class JilBodyDeserializer : IBodyDeserializer
     {
-        private static readonly ConcurrentDictionary<Type, PropertyInfo[]> PropertyInfoCache = new ConcurrentDictionary<Type, PropertyInfo[]>();
+        private static readonly ConcurrentDictionary<Type, PropertyInfo[]> CachedPropertyInformation = new ConcurrentDictionary<Type, PropertyInfo[]>();
+        private static readonly ConcurrentDictionary<Type, object> CachedDefaultValues = new ConcurrentDictionary<Type, object>();
 
         /// <summary>
         /// Gets the de-serialization options used for the actual Jil based JSON De-Serialization, set to Options.Default by default.
@@ -58,11 +59,12 @@ namespace Nancy.Serialization.Jil
 
                 // .. then, due to NancyFx's support for blacklisted properties, we need to get the propertyInfo first (read from cache if possible)
                 PropertyInfo[] propertyInfo;
-                if (PropertyInfoCache.TryGetValue(context.DestinationType, out propertyInfo) == false)
+                var comparisonType = GetTypeForBlacklistComparison(context.DestinationType);
+                if (CachedPropertyInformation.TryGetValue(comparisonType, out propertyInfo) == false)
                 {
-                    propertyInfo = context.DestinationType.GetProperties(BindingFlags.Public | BindingFlags.Instance);
-                    // the following is somewhat dirty but
-                    SpinWait.SpinUntil(() => PropertyInfoCache.ContainsKey(context.DestinationType) || PropertyInfoCache.TryAdd(context.DestinationType, propertyInfo));
+                    propertyInfo = comparisonType.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+                    // the following is somewhat dirty but oh well
+                    SpinWait.SpinUntil(() => CachedPropertyInformation.ContainsKey(comparisonType) || CachedPropertyInformation.TryAdd(comparisonType, propertyInfo));
                 }
 
                 // ... and then compare whether there's anything blacklisted
@@ -81,6 +83,19 @@ namespace Nancy.Serialization.Jil
 
         #endregion
 
+        private static Type GetTypeForBlacklistComparison(Type destinationType)
+        {
+            // check whether the type is an array and if so, return its Element Type (the type that is being.. well.. array / []'ed)
+            if (destinationType.IsArray)
+                return destinationType.GetElementType();
+
+            if (destinationType.IsCollection() && destinationType.IsGenericType)
+                return destinationType.GetGenericArguments().FirstOrDefault() ?? destinationType;
+
+            else
+                return destinationType;
+        }
+
         /// <summary>
         /// Cleans the blacklisted properties from the <see cref="deserializedObject"/>.
         /// If it is a an <see cref="IEnumerable"/>, the blacklisted properties from each element are cleaned.
@@ -91,7 +106,7 @@ namespace Nancy.Serialization.Jil
         /// <returns></returns>
         private static object CleanBlacklistedProperties(BindingContext context, object deserializedObject, PropertyInfo[] cachedPropertyInfo)
         {
-            if (context.DestinationType.IsEnumerable())
+            if (context.DestinationType.IsCollection())
             {
                 foreach (var enumerableElement in (IEnumerable)deserializedObject)
                 {
@@ -107,18 +122,37 @@ namespace Nancy.Serialization.Jil
         }
 
         /// <summary>
-        /// Cleans the property values for the provided <see cref="deserializedObject"/>.
+        /// Cleans the property values for the provided <see cref="targetObject"/>.
         /// </summary>
         /// <param name="context">The context.</param>
-        /// <param name="deserializedObject">The deserialized object.</param>
+        /// <param name="targetObject">The target object.</param>
         /// <param name="cachedPropertyInfo">The cached property information.</param>
-        /// <param name="targetValue">The target value.</param>
-        private static void CleanPropertyValues(BindingContext context, object deserializedObject, IEnumerable<PropertyInfo> cachedPropertyInfo, object targetValue = null)
+        private static void CleanPropertyValues(BindingContext context, object targetObject, IEnumerable<PropertyInfo> cachedPropertyInfo)
         {
             foreach (var blacklistedProperty in cachedPropertyInfo.Except(context.ValidModelProperties))
             {
-                blacklistedProperty.SetValue(deserializedObject, targetValue);
+                blacklistedProperty.SetValue(targetObject, GetDefaultForType(blacklistedProperty.PropertyType));
             }
+        }
+
+        /// <summary>
+        /// Gets the default for the provided <see cref="targetType"/>.
+        /// (see http://stackoverflow.com/questions/325426/programmatic-equivalent-of-defaulttype)
+        /// </summary>
+        /// <param name="targetType">Type of the target.</param>
+        /// <returns></returns>
+        public static object GetDefaultForType(Type targetType)
+        {
+            object defaultValue;
+            if (CachedDefaultValues.TryGetValue(targetType, out defaultValue) == false)
+            {
+                defaultValue = targetType.IsValueType ? Activator.CreateInstance(targetType) : null;
+                
+                // the following is somewhat dirty .. again.. but oh well.. again
+                SpinWait.SpinUntil(() => CachedDefaultValues.ContainsKey(targetType) || CachedDefaultValues.TryAdd(targetType, defaultValue));
+            }
+
+            return defaultValue;
         }
     }
 }
