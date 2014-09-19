@@ -7,14 +7,18 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Provides JSON (De-)Serialization support for Nancy using Jil.</description>
     <summary>This is a Jil based Json (De-)Serializer for Nancy. Nancy is a lightweight web framework for the .Net platform, inspired by Sinatra.</summary>
+    <releaseNotes>
+      * 1.x Versions are round-trip ones and support both, serialization and deserialization
+      * 0.x Versions were initial ones not working both ways (serialization and deserialization)
+    </releaseNotes>
     <language>en-US</language>
     <copyright>Joerg Battermann</copyright>
     <iconUrl>http://nancyfx.org/nancy-nuget.png</iconUrl>
     <licenseUrl>https://github.com/jbattermann/Nancy.Serialization.Jil/blob/master/LICENSE.md</licenseUrl>
     <projectUrl>https://github.com/jbattermann/Nancy.Serialization.Jil</projectUrl>
     <dependencies>
-      <dependency id="Nancy" />
-      <dependency id="Jil" />
+      <dependency id="Nancy" version="[0.23,]" />
+      <dependency id="Jil" version="[2.1.0,]" />
     </dependencies>
     <tags>Nancy Json Jil Serialization Serializer Deserialization Deserializer Performance</tags>
   </metadata>
@@ -22,5 +26,6 @@
     <file src="Nancy.Serialization.Jil\bin\Release\Nancy.Serialization.Jil.dll" target="lib\net45" />
     <file src="Nancy.Serialization.Jil\bin\Release\Nancy.Serialization.Jil.pdb" target="lib\net45" />
     <file src="Nancy.Serialization.Jil\bin\Release\Nancy.Serialization.Jil.xml" target="lib\net45" />
+    <file src="Nancy.Serialization.Jil\**\*.cs" target="src" />
   </files>
 </package>
