@@ -26,6 +26,10 @@ By default [Jil's Default.Options](https://github.com/kevin-montrose/Jil#configu
     Nancy.Serialization.Jil.JilSerializer.Options = Nancy.Serialization.Jil.JilBodyDeserializer.Options = Options.ISO8601PrettyPrintNoHashing; // that's usually what you'd like I guess
 ```
 
+### (De-)Serializing nested Object Graphs
+
+Jil, by default, does not (serialize) nested object graphs and ignores inheritance and its structure (Json.Net however does). In order to get the same behaviour, you can enable it by using the `Options.IncludeInherited` option (see https://github.com/kevin-montrose/Jil/issues/71 over at Jil's repository for details).
+
 ## Limitations
 
 As this library is based on [Jil](https://github.com/kevin-montrose/Jil), all its Features but also Limitations also apply here: .Net >= 4.5 is required, but even more so please take a close look at its [List of supported types](https://github.com/kevin-montrose/Jil/blob/master/README.md#supported-types) and how to [configure and tailor Jil](https://github.com/kevin-montrose/Jil/blob/master/README.md#configuration) to your specific environment and use case. However, one thing I've noticed is that Jil seems to require a public, empty .ctor for the types to be deserialized. Keep that in mind when designing your DTOs.
