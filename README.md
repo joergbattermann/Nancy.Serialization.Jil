@@ -13,7 +13,7 @@ When Nancy detects that the `JilSerializer` and `JilBodyDeserializer` types are 
 
 ### Customization & Jil Options
 
-By default [Jil's Default.Options](https://github.com/kevin-montrose/Jil#configuration) are used for both, Serialization and De-Serialization. If you want to change that behaviour, choose one of the many [Configuration Options](https://github.com/kevin-montrose/Jil/blob/master/README.md#configuration) available and change the Default one used like that:
+By default [Jil's Options](https://github.com/kevin-montrose/Jil#configuration) are set to `Options.ISO8601IncludeInherited` for both, Serialization and De-Serialization. If you want to change that behaviour, choose one of the many [Configuration Options](https://github.com/kevin-montrose/Jil/blob/master/README.md#configuration) available and change the Default one used like that:
 
 ```
     // change only the JilSerializer's Options
@@ -28,7 +28,7 @@ By default [Jil's Default.Options](https://github.com/kevin-montrose/Jil#configu
 
 ### (De-)Serializing nested Object Graphs
 
-Jil, by default, does not (serialize) nested object graphs and ignores inheritance and its structure (Json.Net however does). In order to get the same behaviour, you can enable it by using the `Options.IncludeInherited` option (see https://github.com/kevin-montrose/Jil/issues/71 over at Jil's repository for details).
+Jil, by default, does not (serialize) nested object graphs and ignores inheritance and its structure (Json.Net however does). In order to get the same behaviour, the default [Options](https://github.com/kevin-montrose/Jil#configuration) has been switched from `Options.Default` to `Options.ISO8601IncludeInherited` (see https://github.com/kevin-montrose/Jil/issues/71 over at Jil's repository for details). If you don't want or need inherited members to be serialized, you can easily switch this back following the instructions above.
 
 ## Limitations
 

@@ -21,12 +21,12 @@ namespace Nancy.Serialization.Jil
         private static readonly ConcurrentDictionary<Type, object> CachedDefaultValues = new ConcurrentDictionary<Type, object>();
 
         /// <summary>
-        /// Gets the de-serialization options used for the actual Jil based JSON De-Serialization, set to Options.Default by default.
+        /// Gets the de-serialization options used for the actual Jil based JSON De-Serialization, set to Options.ISO8601IncludeInherited by default.
         /// </summary>
         /// <value>
         /// The Jil De-Serialization <see cref="Options"/>.
         /// </value>
-        public static volatile Options Options = Options.Default;
+        public static volatile Options Options = Options.ISO8601IncludeInherited;
         
         #region Implementation of IBodyDeserializer
 

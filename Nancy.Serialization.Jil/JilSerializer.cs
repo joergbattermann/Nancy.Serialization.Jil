@@ -11,12 +11,12 @@ namespace Nancy.Serialization.Jil
     public class JilSerializer : ISerializer
     {
         /// <summary>
-        /// Gets the serialization options used for the actual Jil based JSON Serialization, set to Options.Default by default.
+        /// Gets the serialization options used for the actual Jil based JSON Serialization, set to Options.ISO8601IncludeInherited by default.
         /// </summary>
         /// <value>
         /// The Jil Serialization <see cref="Options"/>.
         /// </value>
-        public static volatile Options Options = Options.Default;
+        public static volatile Options Options = Options.ISO8601IncludeInherited;
         
         #region Implementation of ISerializer
 
