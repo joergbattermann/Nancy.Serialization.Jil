@@ -28,7 +28,7 @@ By default [Jil's Options](https://github.com/kevin-montrose/Jil#configuration) 
 
 ### (De-)Serializing nested Object Graphs
 
-Jil, by default, does not (serialize) nested object graphs and ignores inheritance and its structure (Json.Net however does). In order to get the same behaviour, the default [Options](https://github.com/kevin-montrose/Jil#configuration) has been switched from `Options.Default` to `Options.ISO8601IncludeInherited` (see https://github.com/kevin-montrose/Jil/issues/71 over at Jil's repository for details). If you don't want or need inherited members to be serialized, you can easily switch this back following the instructions above.
+Jil, by default, does not (serialize) nested object graphs and ignores inheritance and its structure (Json.Net however does). In order to get the same behaviour, the default [Options](https://github.com/kevin-montrose/Jil#configuration) have been switched from `Options.Default` to `Options.ISO8601IncludeInherited` (see https://github.com/kevin-montrose/Jil/issues/71 over at Jil's repository for details). If you don't want or need inherited members to be serialized, you can easily switch this back following the instructions above.
 
 ## Limitations
 
