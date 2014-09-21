@@ -55,7 +55,7 @@ namespace Nancy.Serialization.Jil
             using (var inputStream = new StreamReader(bodyStream))
             {
                 // deserialize json
-                deserializedObject = JSON.Deserialize(inputStream, context.DestinationType);
+                deserializedObject = JSON.Deserialize(inputStream, context.DestinationType, Options);
 
                 // .. then, due to NancyFx's support for blacklisted properties, we need to get the propertyInfo first (read from cache if possible)
                 PropertyInfo[] propertyInfo;
