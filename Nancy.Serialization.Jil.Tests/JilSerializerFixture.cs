@@ -22,6 +22,7 @@ namespace Nancy.Serialization.Jil.Tests
             string actual;
             using (var stream = new MemoryStream())
             {
+                JilSerializer.Options = Options.ISO8601IncludeInherited;
                 ISerializer jilSerializer = new JilSerializer();
                 jilSerializer.Serialize("application/json", data, stream);
                 actual = Encoding.UTF8.GetString(stream.ToArray());
@@ -44,7 +45,7 @@ namespace Nancy.Serialization.Jil.Tests
             string actual;
             using (var stream = new MemoryStream())
             {
-                JilSerializer.Options = Options.ExcludeNulls;
+                JilSerializer.Options = Options.ISO8601ExcludeNullsIncludeInherited;
                 ISerializer jilSerializer = new JilSerializer();
                 jilSerializer.Serialize("application/json", data, stream);
                 actual = Encoding.UTF8.GetString(stream.ToArray());
