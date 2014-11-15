@@ -33,9 +33,9 @@
     <DocumentationFile>bin\Release\Nancy.Serialization.Jil.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Jil, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Jil, Version=2.3.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Jil.2.3.0\lib\net45\Jil.dll</HintPath>
+      <HintPath>..\packages\Jil.2.3.1\lib\net45\Jil.dll</HintPath>
     </Reference>
     <Reference Include="Nancy">
       <HintPath>..\packages\Nancy.0.23.2\lib\net40\Nancy.dll</HintPath>

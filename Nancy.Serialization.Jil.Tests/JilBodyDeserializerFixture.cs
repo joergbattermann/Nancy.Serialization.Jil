@@ -10,7 +10,7 @@ using Nancy.ModelBinding;
 namespace Nancy.Serialization.Jil.Tests
 {
     [TestClass]
-    public class JsonNetBodyDeserializerFixture
+    public class JilBodyDeserializerFixture
     {
         public class TestData
         {
