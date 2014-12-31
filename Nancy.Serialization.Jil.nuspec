@@ -2,16 +2,12 @@
 <package xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <id>Nancy.Serialization.Jil</id>
-    <version>1.5.0</version> <!-- Overridden by Appveyor Build Task -->
+    <version>1.6.0</version>
     <authors>Joerg Battermann</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Provides JSON (De-)Serialization support for Nancy using Jil.</description>
     <summary>This is a Jil based Json (De-)Serializer for Nancy. Nancy is a lightweight web framework for the .Net platform, inspired by Sinatra.</summary>
-    <releaseNotes>
-* &gt;=1.1.x Versions have switched their Default Jil.Options configuration to Options.ISO8601IncludeInherited.
-* 1.x Versions are round-trip ones and support both, serialization and deserialization.
-* 0.x Versions were initial ones not working both ways (serialization and deserialization).
-    </releaseNotes>
+    <releaseNotes>Updated to Jil 2.6.0.</releaseNotes>
     <language>en-US</language>
     <copyright>Joerg Battermann</copyright>
     <iconUrl>http://nancyfx.org/nancy-nuget.png</iconUrl>
@@ -19,7 +15,7 @@
     <projectUrl>https://github.com/jbattermann/Nancy.Serialization.Jil</projectUrl>
     <dependencies>
       <dependency id="Nancy" version="[0.23,]" />
-      <dependency id="Jil" version="[2.5.2,]" />
+      <dependency id="Jil" version="[2.6.0,]" />
     </dependencies>
     <tags>Nancy Json Jil Serialization Serializer Deserialization Deserializer Performance</tags>
   </metadata>
