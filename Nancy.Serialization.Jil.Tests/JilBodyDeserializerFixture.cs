@@ -46,7 +46,7 @@ namespace Nancy.Serialization.Jil.Tests
             var context = new BindingContext
             {
                 DestinationType = typeof(TestData),
-                ValidModelProperties = typeof(TestData).GetProperties(BindingFlags.Public | BindingFlags.Instance),
+                ValidModelBindingMembers = typeof(TestData).GetProperties(BindingFlags.Public | BindingFlags.Instance).Select(p => new BindingMemberInfo(p)),
             };
 
             // When
@@ -76,7 +76,7 @@ namespace Nancy.Serialization.Jil.Tests
             var context = new BindingContext
             {
                 DestinationType = typeof(TestData),
-                ValidModelProperties = typeof(TestData).GetProperties(BindingFlags.Public | BindingFlags.Instance).Where(propertyInfo => propertyInfo.Name != "SomeString"),
+                ValidModelBindingMembers = typeof(TestData).GetProperties(BindingFlags.Public | BindingFlags.Instance).Where(propertyInfo => propertyInfo.Name != "SomeString").Select(p => new BindingMemberInfo(p))
             };
 
             // When
@@ -108,7 +108,7 @@ namespace Nancy.Serialization.Jil.Tests
             var context = new BindingContext
             {
                 DestinationType = typeof(TestDataWithList),
-                ValidModelProperties = typeof(TestDataWithList).GetProperties(BindingFlags.Public | BindingFlags.Instance),
+                ValidModelBindingMembers = typeof(TestDataWithList).GetProperties(BindingFlags.Public | BindingFlags.Instance).Select(p => new BindingMemberInfo(p)),
             };
 
             // When
