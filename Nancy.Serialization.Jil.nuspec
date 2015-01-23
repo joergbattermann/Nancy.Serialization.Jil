@@ -7,7 +7,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Provides JSON (De-)Serialization support for Nancy using Jil.</description>
     <summary>This is a Jil based Json (De-)Serializer for Nancy. Nancy is a lightweight web framework for the .Net platform, inspired by Sinatra.</summary>
-    <releaseNotes>Updated to Jil 2.6.0.</releaseNotes>
+    <releaseNotes>Updated to Jil 2.7.0 AND to NancyFX 1.0!</releaseNotes>
     <language>en-US</language>
     <copyright>Joerg Battermann</copyright>
     <iconUrl>http://nancyfx.org/nancy-nuget.png</iconUrl>
