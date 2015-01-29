@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Joerg Battermann")]
 [assembly: AssemblyProduct("Nancy.Serialization.Jil")]
-[assembly: AssemblyCopyright("Copyright © Joerg Battermann 2014")]
+[assembly: AssemblyCopyright("Copyright © Joerg Battermann 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -21,4 +21,4 @@ using System.Runtime.InteropServices;
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("3dce26ef-2b21-4048-bb3a-f9cfaf075c87")]
 
-[assembly: AssemblyVersion("1.7.0.0")]
+[assembly: AssemblyVersion("1.7.2.0")]
