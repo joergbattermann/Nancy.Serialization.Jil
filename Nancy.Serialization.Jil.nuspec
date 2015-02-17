@@ -15,7 +15,7 @@
     <projectUrl>https://github.com/jbattermann/Nancy.Serialization.Jil</projectUrl>
     <dependencies>
       <dependency id="Nancy" version="[1.0.0,1.9.9]" />
-      <dependency id="Jil" version="[2.7.2,]" />
+      <dependency id="Jil" version="[2.8.0,]" />
     </dependencies>
     <tags>Nancy Json Jil Serialization Serializer Deserialization Deserializer Performance</tags>
   </metadata>
