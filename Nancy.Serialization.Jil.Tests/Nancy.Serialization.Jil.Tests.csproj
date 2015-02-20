@@ -44,17 +44,17 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\CsQuery.1.3.5-beta5\lib\net40\CsQuery.dll</HintPath>
     </Reference>
-    <Reference Include="Jil, Version=2.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Jil, Version=2.8.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Jil.2.8.0\lib\net45\Jil.dll</HintPath>
+      <HintPath>..\packages\Jil.2.8.1\lib\net45\Jil.dll</HintPath>
     </Reference>
-    <Reference Include="Nancy, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Nancy, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Nancy.1.0.0\lib\net40\Nancy.dll</HintPath>
+      <HintPath>..\packages\Nancy.1.1\lib\net40\Nancy.dll</HintPath>
     </Reference>
-    <Reference Include="Nancy.Testing, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Nancy.Testing, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Nancy.Testing.1.0.0\lib\net40\Nancy.Testing.dll</HintPath>
+      <HintPath>..\packages\Nancy.Testing.1.1\lib\net40\Nancy.Testing.dll</HintPath>
     </Reference>
     <Reference Include="Sigil, Version=4.4.0.0, Culture=neutral, PublicKeyToken=2d06c3494341c8ab, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
