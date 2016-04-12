@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Threading.Tasks;
 using CsQuery.ExtensionMethods;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Nancy.ModelBinding;
@@ -15,7 +16,7 @@ namespace Nancy.Serialization.Jil.Tests
     public class ModelBindingFixture
     {
         [TestMethod]
-        public void when_binding_to_a_class()
+        public async Task when_binding_to_a_class()
         {
             // Given
             var module = new ConfigurableNancyModule(c => c.Post("/stuff", (_, m) =>
@@ -27,7 +28,7 @@ namespace Nancy.Serialization.Jil.Tests
 
             // When
             var browser = new Browser(bootstrapper);
-            var result = browser.Post("/stuff", with =>
+            var result = await browser.Post("/stuff", with =>
             {
                 with.HttpRequest();
                 with.JsonBody(new Stuff(1), new JilSerializer());
@@ -38,7 +39,7 @@ namespace Nancy.Serialization.Jil.Tests
         }
 
         [TestMethod]
-        public void when_binding_to_a_collection()
+        public async Task when_binding_to_a_collection()
         {
             // Given
             var module = new ConfigurableNancyModule(c => c.Post("/stuff", (_, m) =>
@@ -50,7 +51,7 @@ namespace Nancy.Serialization.Jil.Tests
 
             // When
             var browser = new Browser(bootstrapper);
-            var result = browser.Post("/stuff", with =>
+            var result = await browser.Post("/stuff", with =>
             {
                 with.HttpRequest();
                 with.JsonBody(new List<Stuff> { new Stuff(1), new Stuff(2) }, new JilSerializer());
@@ -61,7 +62,7 @@ namespace Nancy.Serialization.Jil.Tests
         }
 
         [TestMethod]
-        public void when_binding_to_a_collection_with_blacklisted_property()
+        public async Task when_binding_to_a_collection_with_blacklisted_property()
         {
             // Given
             var guid = Guid.NewGuid();
@@ -83,7 +84,7 @@ namespace Nancy.Serialization.Jil.Tests
 
             // When
             var browser = new Browser(bootstrapper);
-            var result = browser.Post("/stuff", with =>
+            var result = await browser.Post("/stuff", with =>
             {
                 with.HttpRequest();
                 with.JsonBody(new List<Stuff> { new Stuff(1, "one"), new Stuff(2, "two") }, new JilSerializer());
