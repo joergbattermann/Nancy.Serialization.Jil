@@ -45,7 +45,7 @@ Moreover thanks alot to [Kevin](https://github.com/kevin-montrose) for his aweso
 
 ## Copyright
 
-Copyright © 2014 Jörg Battermann
+Copyright © 2016 Jörg Battermann
 
 ## License
 
